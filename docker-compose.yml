@@ -1,0 +1,10 @@
+version: '3'
+services:
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.17.2
+    container_name: filebeat
+    user: root  # Filebeat가 로그 파일에 접근할 수 있도록 설정
+    volumes:
+      - /var/log/winston:/usr/share/filebeat/logs:ro  # 로컬 로그 디렉토리를 Filebeat 컨테이너에 연결
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml  # Filebeat 설정 파일을 컨테이너에 마운트
+    restart: always

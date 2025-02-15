@@ -1,0 +1,17 @@
+filebeat.inputs:
+  # 첫 번째 로그 파일 그룹 (예: info 로그)
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/filebeat/logs/date_wellcheck_server_info.log  # 서버의 info 로그
+    tags: ["wellcheck-dev", "info-logs"]  # 서버 로그에 태그 추가
+
+  # 두 번째 로그 파일 그룹 (예: error 로그)
+  - type: log
+    enabled: true
+    paths:
+      - /usr/share/filebeat/logs/date_wellcheck_server_error.log  # 서버의 info 로그
+    tags: ["wellcheck-dev", "error-logs"]  # 서버 로그에 태그 추가
+
+output.logstash:
+  hosts: ["15.164.149.198:5044"]  # Logstash 서버의 IP와 포트
